@@ -102,23 +102,16 @@ client.on('guildMemberAdd', async member => {
           thumbnail: member.guild.iconURL(),
           authorName: member.displayName,
           authorURL: member.user.displayAvatarURL(),
-          authorIcon: member.user.displayAvatarURL()
+          authorIcon: member.user.displayAvatarURL(),
+          serverName: member.guild.name,
+          userTag: member.user.tag, // Adding user tag
+          memberCount: member.guild.memberCount
       };
 
       const { title, description, image, footer, color, footerURL, thumbnail, authorName, authorURL, authorIcon } = processedMessageData;
 
       const welcomeMessage = `Hello ${member}!`;
 
-      const welcomeMessageDm = `💝 This message has been sent from **${member.guild.name}!**`;
-      const embed = new EmbedBuilder()
-          .setTitle(title)
-          .setDescription(description)
-          .setImage(image)
-          .setColor(color)
-          .setTimestamp()
-          .setFooter({ text: footer, iconURL: footerURL })
-          .setThumbnail(thumbnail)
-          .setAuthor({ name: authorName, iconURL: authorIcon, url: authorURL });
 
       await welcomeChannel.send({ content: welcomeMessage, embeds: [embed] });
       //REMOVE BELOW LINE IF YOU DONT WANT DM MESSAGE
